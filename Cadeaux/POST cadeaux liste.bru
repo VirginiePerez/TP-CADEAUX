@@ -1,0 +1,22 @@
+meta {
+  name: POST cadeaux liste
+  type: http
+  seq: 6
+}
+
+post {
+  url: http://localhost:8080/cadeaux
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "nom": "Livre",
+    "description": "Thriller",
+    "prix": 42,
+    "listeCadeau": {
+      "id": 1
+    }
+  }
+}

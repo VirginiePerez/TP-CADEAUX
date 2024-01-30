@@ -1,7 +1,8 @@
 package com.example.demo.service;
 
-import com.example.demo.dao.PersonneRepository;
-import com.example.demo.model.Personne;
+import com.example.demo.dao.CadeauRepository;
+import com.example.demo.model.ListeCadeau;
+import com.example.demo.model.Cadeau;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,28 +10,32 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class AnnuaireDatabase {
+public class CadeauDatabase {
 
     @Autowired
-    private PersonneRepository personneRepository;
+    private CadeauRepository cadeauRepository;
 
-    public void add( Personne p){
-        personneRepository.save(p);
+    public void add( Cadeau c){
+        cadeauRepository.save(c);
     }
 
-    public List<Personne> getAll(){
-        return personneRepository.findAll();
+    public List<Cadeau> getAll(){
+        return cadeauRepository.findAll();
     }
 
-    public Optional<Personne> findById(Integer id){
-        return personneRepository.findById(id);
+    public Optional<Cadeau> findById(Integer id){
+        return cadeauRepository.findById(id);
     }
 
     public void delete(Integer id) {
-        personneRepository.deleteById(id);
+        cadeauRepository.deleteById(id);
     }
 
-    public void update(Personne personne) {
-        personneRepository.save(personne);
+    public void update(Cadeau cadeau) {
+        cadeauRepository.save(cadeau);
+    }
+
+    public List<Cadeau> findAllByListeCadeau(ListeCadeau listeCadeau) {
+        return cadeauRepository.findAllByListeCadeau(listeCadeau);
     }
 }

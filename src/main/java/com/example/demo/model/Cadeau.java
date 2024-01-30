@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -13,9 +14,14 @@ public class Cadeau {
 
     private String nom;
     private String description;
-    private String prix;
+    private Integer prix;
 
-    public Cadeau(String nom, String description, String prix) {
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "liste_cadeau_id")
+    private ListeCadeau listeCadeau;
+
+
+    public Cadeau(String nom, String description, Integer prix) {
         this.nom = nom;
         this.description = description;
         this.prix = prix;
@@ -48,11 +54,19 @@ public class Cadeau {
         this.description = description;
     }
 
-    public String getPrix() {
+    public Integer getPrix() {
         return prix;
     }
 
-    public void setPrix(String prix) {
+    public void setPrix(Integer prix) {
         this.prix = prix;
+    }
+
+    public ListeCadeau getListeCadeau() {
+        return listeCadeau;
+    }
+
+    public void setListeCadeau(ListeCadeau listeCadeau) {
+        this.listeCadeau = listeCadeau;
     }
 }
