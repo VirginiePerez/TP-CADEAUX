@@ -2,6 +2,7 @@ package com.example.demo.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 @Entity
@@ -10,6 +11,7 @@ public class Cadeau {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
     private Integer id;
 
     private String nom;
@@ -29,7 +31,7 @@ public class Cadeau {
 
     public Cadeau() {
     }
-
+    @JsonIgnore
     public Integer getId() {
         return id;
     }
@@ -60,6 +62,12 @@ public class Cadeau {
 
     public void setPrix(Integer prix) {
         this.prix = prix;
+    }
+
+
+    @JsonProperty("prix")
+    public String getPrixFormatted() {
+        return prix + " €";
     }
 
     public ListeCadeau getListeCadeau() {
